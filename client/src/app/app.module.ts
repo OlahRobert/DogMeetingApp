@@ -23,6 +23,8 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
+    NgxSpinnerModule,
   ],
   providers: [
     {
@@ -57,6 +60,11 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true,
     },
   ],
