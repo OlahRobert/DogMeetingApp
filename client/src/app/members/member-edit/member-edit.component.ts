@@ -32,7 +32,6 @@ export class MemberEditComponent implements OnInit {
     this.accountService.currentUser$
       .pipe(take(1))
       .subscribe((user) => (this.user = user));
-    console.log(this.user);
   }
 
   ngOnInit(): void {
